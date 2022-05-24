@@ -3,6 +3,7 @@ package com.example.moviedbsampleapp.ui.videoList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moviedbsampleapp.domain.Container
 import com.example.moviedbsampleapp.model.Movie
 import kotlinx.coroutines.launch
 
@@ -22,10 +23,10 @@ class MovieListViewModel: ViewModel() {
         status.value = ApiStatus.LOADING
         viewModelScope.launch {
 
-//            val list = Container.movieRepository.getMovies()
-//
-//            movieList.value = list
-//            status.value = ApiStatus.DONE
+            val list = Container.movieRepository.getMovies()
+
+            movieList.value = list
+            status.value = ApiStatus.DONE
         }
     }
 

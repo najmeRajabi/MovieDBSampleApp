@@ -1,7 +1,8 @@
-package com.example.moviedbsampleapp
+package com.example.moviedbsampleapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.moviedbsampleapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

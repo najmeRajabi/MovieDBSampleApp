@@ -1,5 +1,6 @@
 package com.example.moviedbsampleapp.data
 
+import android.util.Log
 import com.example.moviedbsampleapp.model.Movie
 import com.example.moviedbsampleapp.network.MoviesApi
 
@@ -9,14 +10,15 @@ class MovieRemoteDataSource {
     suspend fun getMovies() : List<Movie>{
         try {
             return MoviesApi.retrofitService.getMovies().movieList
-        }catch (e : Exception){
-            return getSampleMovies()
+
+            }catch (e : Exception){
+            return getSampleMovies(e.toString())
         }
 
     }
-    fun getSampleMovies() : List<Movie>{
+    fun getSampleMovies(e: String) : List<Movie>{
         return listOf(
-            Movie(listOf(), 111,"" , "","supranos" , false),
+            Movie(listOf(), 111,"$e " , "","supranosfff" , false),
         )
     }
 
