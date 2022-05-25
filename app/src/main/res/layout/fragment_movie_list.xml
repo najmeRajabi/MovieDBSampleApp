@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.example.moviedbsampleapp.ui.videoList.MovieListViewModel" />
+        <variable
+            name="adaptor"
+            type="com.example.moviedbsampleapp.ui.adapters.MoviesAdapter" />
 
     </data>
 
@@ -14,13 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.videoList.MovieListFragment">
-
-        <TextView
-            android:id="@+id/txv_sample"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="40sp"
-            android:text="@{viewModel.movieList[0].title}" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -63,7 +59,9 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="18dp"
             android:layout_marginBottom="20dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            android:adapter="@{adaptor}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view"

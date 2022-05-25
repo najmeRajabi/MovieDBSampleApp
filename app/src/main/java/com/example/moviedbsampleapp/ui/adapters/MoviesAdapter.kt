@@ -57,9 +57,10 @@ class MoviesAdapter( var clickHandler : ClickHandler):
                 txvTitle.text = movie.title
                 Glide
                     .with(view)
-                    .load(movie.posterPath)
+                    .load("https://image.tmdb.org/t/p/w500"+movie.posterPath)
                     .centerCrop()
-                    .placeholder(R.drawable.ic_baseline_image_24)
+                    .placeholder(R.drawable.ic_baseline_more_horiz_24)
+                    .error(R.drawable.ic_baseline_image_not_supported_24)
                     .into(imvPoster)
 
                 view.setOnClickListener { clickHandler(movie) }
