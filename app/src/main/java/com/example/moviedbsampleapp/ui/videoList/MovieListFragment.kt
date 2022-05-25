@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.moviedbsampleapp.R
 import com.example.moviedbsampleapp.databinding.FragmentMovieListBinding
 import com.example.moviedbsampleapp.ui.adapters.MoviesAdapter
@@ -33,6 +34,7 @@ class MovieListFragment : Fragment() {
         binding.viewModel = vModel
         binding.adaptor = MoviesAdapter {
             Toast.makeText(requireContext(),"clicked on ${it.title}",Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_movieListFragment_to_comingSoonVideosFragment)
         }
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root

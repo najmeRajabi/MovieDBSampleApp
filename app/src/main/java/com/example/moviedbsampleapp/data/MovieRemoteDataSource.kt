@@ -30,4 +30,13 @@ class MovieRemoteDataSource {
     suspend fun searchMovie(searchKey:String) : List<Movie>{
         return MoviesApi.retrofitService.searchMovie(searchKey,).movieList
     }
+
+    suspend fun getUpComingMovies(): List<Movie> {
+        try {
+            return MoviesApi.retrofitService.getUpComingMovies().movieList
+
+        }catch (e : Exception){
+            return getSampleMovies(e.toString())
+        }
+    }
 }

@@ -56,6 +56,13 @@ interface ApiService {
     ): MovieListApiResult
 
 
+    @GET("movie/upcoming")
+    suspend fun getUpComingMovies(
+        @Query("api_key") key : String = API_KEY,
+        @Query("page")page : Int = 1
+    ): MovieListApiResult
+
+
 }
 
 object MoviesApi {

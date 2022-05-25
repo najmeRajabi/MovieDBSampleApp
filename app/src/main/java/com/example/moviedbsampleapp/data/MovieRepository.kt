@@ -13,6 +13,11 @@ class MovieRepository(val movieRemoteDataSource : MovieRemoteDataSource ,) {
         return movieRemoteDataSource.searchMovie(searchKey)
     }
 
+    suspend fun getUpComingMovies() : List<Movie>{
+        return movieRemoteDataSource.getUpComingMovies()
+
+    }
+
     suspend fun getYoutubeLink(id : Int) : String {
         return "youtube /watch v = "+ movieRemoteDataSource.getVideoKey()
     }
