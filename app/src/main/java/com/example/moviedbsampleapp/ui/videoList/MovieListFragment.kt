@@ -1,10 +1,8 @@
 package com.example.moviedbsampleapp.ui.videoList
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -20,6 +18,7 @@ class MovieListFragment : Fragment() {
     lateinit var binding: FragmentMovieListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
 
     }
@@ -34,7 +33,6 @@ class MovieListFragment : Fragment() {
         binding.viewModel = vModel
         binding.adaptor = MoviesAdapter {
             Toast.makeText(requireContext(),"clicked on ${it.title}",Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_movieListFragment_to_comingSoonVideosFragment)
         }
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
@@ -53,6 +51,22 @@ class MovieListFragment : Fragment() {
 
         binding.searchEdtHome.addTextChangedListener {
             vModel.searchMovies(it.toString())
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_home, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.comingSoonVideosFragment -> {
+                findNavController().navigate(R.id.action_movieListFragment_to_comingSoonVideosFragment)
+                true}
+            else -> super.onOptionsItemSelected(item)
+
         }
     }
 

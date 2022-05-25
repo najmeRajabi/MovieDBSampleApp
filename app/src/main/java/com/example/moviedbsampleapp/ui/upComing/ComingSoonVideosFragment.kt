@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.moviedbsampleapp.R
@@ -35,7 +36,11 @@ class ComingSoonVideosFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         vModel.upComingVideos.observe(viewLifecycleOwner){
-            binding.adaptor!!.submitList(it)
+            if (it == null){
+                Toast.makeText(requireContext(),"not movie yet", Toast.LENGTH_LONG).show()
+            }else{
+                binding.adaptor!!.submitList(it)
+            }
         }
     }
 }
