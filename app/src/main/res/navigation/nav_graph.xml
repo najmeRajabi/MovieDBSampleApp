@@ -7,5 +7,13 @@
     <fragment
         android:id="@+id/movieListFragment"
         android:name="com.example.moviedbsampleapp.ui.videoList.MovieListFragment"
-        android:label="MovieListFragment" />
+        android:label="MovieListFragment" >
+        <action
+            android:id="@+id/action_movieListFragment_to_comingSoonVideosFragment"
+            app:destination="@id/comingSoonVideosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comingSoonVideosFragment"
+        android:name="com.example.moviedbsampleapp.ui.upComing.ComingSoonVideosFragment"
+        android:label="ComingSoonVideosFragment" />
 </navigation>
