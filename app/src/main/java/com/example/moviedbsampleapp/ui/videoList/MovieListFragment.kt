@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.moviedbsampleapp.R
@@ -41,7 +42,15 @@ class MovieListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         vModel.movieList.observe(viewLifecycleOwner){
+            if (it == null){
+                Toast.makeText(requireContext(),"not movie yet", Toast.LENGTH_LONG).show()
+            }else{
             binding.adaptor!!.submitList(it)
+            }
+        }
+
+        binding.searchEdtHome.addTextChangedListener {
+            vModel.searchMovies(it.toString())
         }
     }
 

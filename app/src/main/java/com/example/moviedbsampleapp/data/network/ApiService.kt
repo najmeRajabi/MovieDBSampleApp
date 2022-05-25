@@ -1,4 +1,4 @@
-package com.example.moviedbsampleapp.network
+package com.example.moviedbsampleapp.data.network
 
 import com.squareup.moshi.Moshi
 import com.example.moviedbsampleapp.model.MovieListApiResult
@@ -52,6 +52,7 @@ interface ApiService {
     suspend fun searchMovie(
         @Query("query") searchKey : String,
         @Query("api_key") key : String = API_KEY,
+        @Query("page")page : Int = 1
     ): MovieListApiResult
 
 

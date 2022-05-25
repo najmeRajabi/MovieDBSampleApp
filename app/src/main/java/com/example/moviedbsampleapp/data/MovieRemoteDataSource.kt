@@ -1,8 +1,7 @@
 package com.example.moviedbsampleapp.data
 
-import android.util.Log
 import com.example.moviedbsampleapp.model.Movie
-import com.example.moviedbsampleapp.network.MoviesApi
+import com.example.moviedbsampleapp.data.network.MoviesApi
 
 
 class MovieRemoteDataSource {

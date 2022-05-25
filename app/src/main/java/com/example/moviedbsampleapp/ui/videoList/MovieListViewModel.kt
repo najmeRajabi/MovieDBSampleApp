@@ -1,5 +1,6 @@
 package com.example.moviedbsampleapp.ui.videoList
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,11 +24,29 @@ class MovieListViewModel: ViewModel() {
         status.value = ApiStatus.LOADING
         viewModelScope.launch {
 
-            val list = Container.movieRepository.getMovies()
+            val list = getAllMovies()
 
             movieList.value = list
+
             status.value = ApiStatus.DONE
         }
     }
 
+    fun searchMovies(searchKey: String)  {
+        viewModelScope.launch {
+            if (searchKey.isNullOrBlank()) {
+                movieList.value= getAllMovies()!!
+            } else
+                movieList.value= findMovies(searchKey)!!
+        }
+    }
+
+    suspend fun findMovies(string: String): List<Movie> {
+        val result = Container.movieRepository.searchMovies(string)
+        return result
+    }
+
+    suspend fun getAllMovies(): List<Movie> {
+        return Container.movieRepository.getMovies()
+    }
 }

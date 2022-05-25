@@ -14,7 +14,7 @@ data class Movie(
     val overview: String,
 
     @Json(name = "poster_path")
-    val posterPath: String,
+    val posterPath: String? = null ,
 
     @Json(name = "title")
     val title: String,
