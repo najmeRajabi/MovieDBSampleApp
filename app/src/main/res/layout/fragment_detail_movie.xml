@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="vModel"
             type="com.example.moviedbsampleapp.ui.video.MovieViewModel" />
@@ -19,7 +20,7 @@
             android:id="@+id/imv_poster_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="200dp"
+            android:minHeight="270dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,11 +34,44 @@
             app:layout_constraintTop_toBottomOf="@id/imv_poster_detail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="5dp"
             android:gravity="center"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:text="@{vModel.movie.title}"
             tools:text="@string/title_poster"/>
+
+        <TextView
+            android:id="@+id/txv_overview_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:padding="5dp"
+            android:text="@{vModel.movie.overview}"
+            android:textSize="17sp"
+            android:justificationMode="inter_word"
+            android:textAlignment="textStart"
+            android:textScaleX="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txv_title_detail"
+            tools:text="overview" />
+
+        <ImageView
+            android:id="@+id/imv_play_detail"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:visibility="@{vModel.movie.video ? View.VISIBLE : View.GONE}"
+            android:src="@drawable/ic_baseline_play_circle_outline_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txv_overview_detail" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

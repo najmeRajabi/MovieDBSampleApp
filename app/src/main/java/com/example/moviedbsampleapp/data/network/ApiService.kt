@@ -48,7 +48,12 @@ interface ApiService {
     ): Movie
 
 
-    suspend fun getVideo()
+    @GET("/movie/{movie_id}/videos")
+    suspend fun getVideo(
+        @Path("movie_id") id: Long,
+        @Query("api_key") key : String = API_KEY,
+        @Query("page")page : Int = 1
+    )
 
     //https://api.themoviedb.org/3/search/movie?api_key=b8fb74a7f7ebe3f2402f6de80059d5a5&query=sun
     @GET(" search/movie ")
