@@ -15,7 +15,6 @@ import com.example.moviedbsampleapp.ui.video.DetailMovieFragmentArgs
 class WebViewFragment : Fragment() {
 
     lateinit var binding: FragmentWebViewBinding
-    val vModel: VideoViewModel by viewModels()
     private val args: WebViewFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
