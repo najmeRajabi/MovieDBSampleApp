@@ -1,20 +1,22 @@
 package com.example.moviedbsampleapp.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
-
+@Entity
 data class Movie(
 //    @Json(name = "genre_ids")
 //    val genreIDS: List<Long>,
 
     @Json(name = "id")
-    val id: Long,
+    @PrimaryKey val id: Long,
 
     @Json(name = "overview")
     val overview: String,
 
     @Json(name = "poster_path")
-    val posterPath: String? = null ,
+    val posterPath: String? = null,
 
     @Json(name = "title")
     val title: String,

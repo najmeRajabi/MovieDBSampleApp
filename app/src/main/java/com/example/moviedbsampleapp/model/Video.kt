@@ -1,7 +1,10 @@
 package com.example.moviedbsampleapp.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
+@Entity
 data class Video(
     @Json(name = "name")
     val name: String,
@@ -10,7 +13,7 @@ data class Video(
     val key: String,
 
     @Json(name = "id")
-    val id: Long,
+    @PrimaryKey val id: Long,
 
     @Json(name = "site")
     val site: String
