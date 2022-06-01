@@ -1,7 +1,9 @@
 package com.example.moviedbsampleapp.data
 
+import com.example.moviedbsampleapp.data.network.MoviesApi
 import com.example.moviedbsampleapp.model.Movie
 import com.example.moviedbsampleapp.model.MovieListApiResult
+import com.example.moviedbsampleapp.model.VideoApiResult
 
 class MovieRepository(val movieRemoteDataSource : MovieRemoteDataSource ,) {
 
@@ -22,6 +24,10 @@ class MovieRepository(val movieRemoteDataSource : MovieRemoteDataSource ,) {
     suspend fun getMovie(id: Long): Movie {
         return movieRemoteDataSource.getMovie(id)
     }
+    suspend fun getVideo(id: Long): VideoApiResult {
+        return movieRemoteDataSource.getVideo(id)
+    }
+
 
     suspend fun getYoutubeLink(id : Int) : String {
         return "youtube /watch v = "+ movieRemoteDataSource.getVideoKey()

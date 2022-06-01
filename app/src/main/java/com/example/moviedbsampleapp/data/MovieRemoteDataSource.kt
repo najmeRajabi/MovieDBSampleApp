@@ -3,6 +3,7 @@ package com.example.moviedbsampleapp.data
 import com.example.moviedbsampleapp.model.Movie
 import com.example.moviedbsampleapp.data.network.MoviesApi
 import com.example.moviedbsampleapp.model.MovieListApiResult
+import com.example.moviedbsampleapp.model.VideoApiResult
 
 
 class MovieRemoteDataSource {
@@ -43,5 +44,9 @@ class MovieRemoteDataSource {
 
     suspend fun getMovie(id: Long): Movie {
         return MoviesApi.retrofitService.getMovie(id)
+    }
+
+    suspend fun getVideo(id: Long): VideoApiResult {
+        return MoviesApi.retrofitService.getVideo(id)
     }
 }

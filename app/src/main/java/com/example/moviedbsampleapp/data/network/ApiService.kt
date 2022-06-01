@@ -3,6 +3,7 @@ package com.example.moviedbsampleapp.data.network
 import com.example.moviedbsampleapp.model.Movie
 import com.squareup.moshi.Moshi
 import com.example.moviedbsampleapp.model.MovieListApiResult
+import com.example.moviedbsampleapp.model.VideoApiResult
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -53,7 +54,7 @@ interface ApiService {
         @Path("movie_id") id: Long,
         @Query("api_key") key : String = API_KEY,
         @Query("page")page : Int = 1
-    )
+    ): VideoApiResult
 
     //https://api.themoviedb.org/3/search/movie?api_key=b8fb74a7f7ebe3f2402f6de80059d5a5&query=sun
     @GET(" search/movie ")
