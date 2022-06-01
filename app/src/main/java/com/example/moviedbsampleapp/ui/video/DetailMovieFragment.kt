@@ -12,11 +12,12 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.moviedbsampleapp.R
 import com.example.moviedbsampleapp.databinding.FragmentDetailMovieBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailMovieFragment : Fragment() {
 
     private val args: DetailMovieFragmentArgs by navArgs()
-    val vModel : MovieViewModel by viewModels()
+    val vModel : MovieViewModel by viewModel()
     lateinit var binding: FragmentDetailMovieBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

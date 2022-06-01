@@ -11,11 +11,12 @@ import androidx.fragment.app.viewModels
 import com.example.moviedbsampleapp.R
 import com.example.moviedbsampleapp.databinding.FragmentComingSoonVideosBinding
 import com.example.moviedbsampleapp.ui.adapters.MoviesAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ComingSoonVideosFragment : Fragment() {
 
-    val vModel : ComingSoonViewModel by viewModels()
+    val vModel : ComingSoonViewModel by viewModel()
     lateinit var binding: FragmentComingSoonVideosBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

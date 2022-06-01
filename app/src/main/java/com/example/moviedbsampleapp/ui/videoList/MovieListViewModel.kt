@@ -1,16 +1,15 @@
 package com.example.moviedbsampleapp.ui.videoList
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviedbsampleapp.domain.Container
+import com.example.moviedbsampleapp.data.MovieRepository
 import com.example.moviedbsampleapp.model.Movie
 import kotlinx.coroutines.launch
 
 enum class ApiStatus { LOADING, DONE, ERROR }
 
-class MovieListViewModel: ViewModel() {
+class MovieListViewModel(val movieRepository: MovieRepository): ViewModel() {
 
     val status = MutableLiveData<ApiStatus>()
     val movieList = MutableLiveData<List<Movie>>()
@@ -42,11 +41,11 @@ class MovieListViewModel: ViewModel() {
     }
 
     suspend fun findMovies(string: String): List<Movie> {
-        val result = Container.movieRepository.searchMovies(string)
+        val result = movieRepository.searchMovies(string)
         return result
     }
 
     suspend fun getAllMovies(): List<Movie> {
-        return Container.movieRepository.getMovies()
+        return movieRepository.getMovies()
     }
 }

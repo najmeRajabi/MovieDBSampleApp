@@ -6,12 +6,12 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviedbsampleapp.domain.Container
+import com.example.moviedbsampleapp.data.MovieRepository
 import com.example.moviedbsampleapp.model.Movie
 import com.example.moviedbsampleapp.model.Video
 import kotlinx.coroutines.launch
 
-class MovieViewModel:ViewModel() {
+class MovieViewModel(val movieRepository: MovieRepository):ViewModel() {
 
     val movie = MutableLiveData<Movie>()
     val video = MutableLiveData<Video>()
@@ -21,7 +21,7 @@ class MovieViewModel:ViewModel() {
     fun getMovie(id: Long , context: Context){
         viewModelScope.launch {
             try {
-                movie.value = Container.movieRepository.getMovie(id)
+                movie.value = movieRepository.getMovie(id)
                 getVideo(id)
             }catch (e: Exception){
                 Log.d("-----TAG", "getMovie exception: $e")
@@ -39,7 +39,7 @@ class MovieViewModel:ViewModel() {
     fun getVideo(id: Long){
         viewModelScope.launch {
             try {
-                video.value = Container.movieRepository.getVideo(id).videoList[0]
+                video.value = movieRepository.getVideo(id).videoList[0]
             }catch (e: Exception){
                 Log.d("videoVM-----TAG", "getVideo: $e")
             }

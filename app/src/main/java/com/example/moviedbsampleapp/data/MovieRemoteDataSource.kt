@@ -1,52 +1,33 @@
 package com.example.moviedbsampleapp.data
 
+import com.example.moviedbsampleapp.data.network.ApiService
 import com.example.moviedbsampleapp.model.Movie
 import com.example.moviedbsampleapp.data.network.MoviesApi
 import com.example.moviedbsampleapp.model.MovieListApiResult
 import com.example.moviedbsampleapp.model.VideoApiResult
 
 
-class MovieRemoteDataSource {
+class MovieRemoteDataSource (var apiService: ApiService){
 
     suspend fun getMovies() : List<Movie>{
-        try {
-            return MoviesApi.retrofitService.getMovies().movieList
-
-            }catch (e : Exception){
-            return getSampleMovies(e.toString())
-        }
-
-    }
-    fun getSampleMovies(e: String) : List<Movie>{
-        return listOf(
-            Movie( 111,"$e " , "","supranosfff" , false),
-        )
+        return apiService.getMovies().movieList
     }
 
-    suspend fun getVideoKey() : String
-    {
-        //TODO : return video key
-        return ""
-    }
+
 
     suspend fun searchMovie(searchKey:String) : List<Movie>{
-        return MoviesApi.retrofitService.searchMovie(searchKey,).movieList
+        return apiService.searchMovie(searchKey,).movieList
     }
 
     suspend fun getUpComingMovies(): List<Movie> {
-        try {
-            return MoviesApi.retrofitService.getUpComingMovies().movieList
-
-        }catch (e : Exception){
-            return getSampleMovies(e.toString())
-        }
+            return apiService.getUpComingMovies().movieList
     }
 
     suspend fun getMovie(id: Long): Movie {
-        return MoviesApi.retrofitService.getMovie(id)
+        return apiService.getMovie(id)
     }
 
     suspend fun getVideo(id: Long): VideoApiResult {
-        return MoviesApi.retrofitService.getVideo(id)
+        return apiService.getVideo(id)
     }
 }
