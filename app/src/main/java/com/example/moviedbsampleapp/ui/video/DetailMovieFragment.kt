@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.moviedbsampleapp.R
@@ -40,6 +41,9 @@ class DetailMovieFragment : Fragment() {
         val id = args.id
         vModel.getMovie(id,requireContext())
         setImage()
+        binding.imvPlayDetail.setOnClickListener {
+            goToWebView(vModel.playVideo())
+        }
     }
 
     private fun setImage() {
@@ -52,6 +56,10 @@ class DetailMovieFragment : Fragment() {
                 .error(R.drawable.ic_baseline_image_not_supported_24)
                 .into(binding.imvPosterDetail)
         }
+    }
+
+    private fun goToWebView(link: String) {
+        findNavController().navigate(DetailMovieFragmentDirections.actionDetailMovieFragmentToWebViewFragment(link))
     }
 
 }

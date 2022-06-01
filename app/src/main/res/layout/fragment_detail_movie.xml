@@ -67,7 +67,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
-            android:visibility="@{vModel.movie.video ? View.VISIBLE : View.GONE}"
+            android:visibility="@{vModel.movie.video ? View.VISIBLE : View.VISIBLE}"
             android:src="@drawable/ic_baseline_play_circle_outline_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

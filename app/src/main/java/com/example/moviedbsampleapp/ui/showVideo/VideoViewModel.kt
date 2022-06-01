@@ -8,7 +8,7 @@ import com.example.moviedbsampleapp.domain.Container
 import com.example.moviedbsampleapp.model.Video
 import kotlinx.coroutines.launch
 
-class videoViewModel: ViewModel() {
+class VideoViewModel: ViewModel() {
 
     val video = MutableLiveData<Video>()
 

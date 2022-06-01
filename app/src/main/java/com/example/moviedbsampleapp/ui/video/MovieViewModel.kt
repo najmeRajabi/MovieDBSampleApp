@@ -8,19 +8,40 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviedbsampleapp.domain.Container
 import com.example.moviedbsampleapp.model.Movie
+import com.example.moviedbsampleapp.model.Video
 import kotlinx.coroutines.launch
 
 class MovieViewModel:ViewModel() {
 
     val movie = MutableLiveData<Movie>()
+    val video = MutableLiveData<Video>()
+
+
 
     fun getMovie(id: Long , context: Context){
         viewModelScope.launch {
             try {
                 movie.value = Container.movieRepository.getMovie(id)
+                getVideo(id)
             }catch (e: Exception){
                 Log.d("-----TAG", "getMovie exception: $e")
                 Toast.makeText(context, "something is wrong: $e",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun playVideo(): String {
+        movie.value?.id?.let { getVideo(it) }
+        return "https://www.youtube.com/watch?v="+video.value?.key
+    }
+
+
+    fun getVideo(id: Long){
+        viewModelScope.launch {
+            try {
+                video.value = Container.movieRepository.getVideo(id).videoList[0]
+            }catch (e: Exception){
+                Log.d("videoVM-----TAG", "getVideo: $e")
             }
         }
     }
