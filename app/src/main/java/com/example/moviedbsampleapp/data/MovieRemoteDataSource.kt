@@ -2,6 +2,7 @@ package com.example.moviedbsampleapp.data
 
 import com.example.moviedbsampleapp.model.Movie
 import com.example.moviedbsampleapp.data.network.MoviesApi
+import com.example.moviedbsampleapp.model.MovieListApiResult
 
 
 class MovieRemoteDataSource {
@@ -17,7 +18,7 @@ class MovieRemoteDataSource {
     }
     fun getSampleMovies(e: String) : List<Movie>{
         return listOf(
-            Movie(listOf(), 111,"$e " , "","supranosfff" , false),
+            Movie( 111,"$e " , "","supranosfff" , false),
         )
     }
 
@@ -38,5 +39,9 @@ class MovieRemoteDataSource {
         }catch (e : Exception){
             return getSampleMovies(e.toString())
         }
+    }
+
+    suspend fun getMovie(id: Long): Movie {
+        return MoviesApi.retrofitService.getMovie(id)
     }
 }

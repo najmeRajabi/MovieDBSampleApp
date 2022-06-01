@@ -32,6 +32,8 @@ class MovieListFragment : Fragment() {
 
         binding.viewModel = vModel
         binding.adaptor = MoviesAdapter {
+            findNavController().navigate(MovieListFragmentDirections.
+            actionMovieListFragmentToDetailMovieFragment(it.id))
             Toast.makeText(requireContext(),"clicked on ${it.title}",Toast.LENGTH_SHORT).show()
         }
         binding.lifecycleOwner = viewLifecycleOwner
@@ -41,11 +43,11 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vModel.movieList.observe(viewLifecycleOwner){
-            if (it == null){
+        vModel.movieList.observe(viewLifecycleOwner){ movie ->
+            if (movie == null){
                 Toast.makeText(requireContext(),"not movie yet", Toast.LENGTH_LONG).show()
             }else{
-            binding.adaptor!!.submitList(it)
+            binding.adaptor!!.submitList(movie)
             }
         }
 

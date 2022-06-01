@@ -4,8 +4,8 @@ import com.squareup.moshi.Json
 
 
 data class Movie(
-    @Json(name = "genre_ids")
-    val genreIDS: List<Long>,
+//    @Json(name = "genre_ids")
+//    val genreIDS: List<Long>,
 
     @Json(name = "id")
     val id: Long,

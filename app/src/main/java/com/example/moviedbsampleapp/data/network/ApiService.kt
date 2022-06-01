@@ -1,5 +1,6 @@
 package com.example.moviedbsampleapp.data.network
 
+import com.example.moviedbsampleapp.model.Movie
 import com.squareup.moshi.Moshi
 import com.example.moviedbsampleapp.model.MovieListApiResult
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -41,8 +42,10 @@ interface ApiService {
 
     @GET("movie/{id}")
     suspend fun getMovie(
-        @Path("id") id : Int
-    )
+        @Path("id") id: Long,
+        @Query("api_key") key : String = API_KEY,
+        @Query("page")page : Int = 1
+    ): Movie
 
 
     suspend fun getVideo()
